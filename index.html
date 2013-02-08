@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Impact</title>
+
+<div id="metrics"></div>
+
+<script>
+var container = document.getElementById("metrics");
+
+for (var i = 1; i < 31; i++) {
+	var doi = "10.7717/peerj." + i;
+
+	var item = document.createElement("div");
+	item.textContent = doi;
+
+	item.setAttribute("class", "impactstory-embed altmetric-embed");
+	item.setAttribute("data-id-type", "doi");
+	item.setAttribute("data-api-key", "eaton-0w99ho");
+	item.setAttribute("data-badge-type", "large-donut");
+	item.setAttribute("data-badge-details", "right");
+	item.setAttribute("data-doi", doi);
+	item.setAttribute("data-id", doi);
+	
+	container.appendChild(item);
+}
+</script>
+
+<script src="http://impactstory.org/embed/v1/impactstory.js"></script>
+<script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+<script src="crossref.js"></script>

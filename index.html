@@ -31,11 +31,13 @@ var addRenderers = function() {
 	});
 };
 
-var renderItem = function(doi) {
+var renderItem = function(data) {
+	var doi = data.doi;
+
 	var itemContainer = document.createElement("article");
 
 	var a = document.createElement("a");
-	a.textContent = doi;
+	a.textContent = data.title;
 	a.setAttribute("href", "http://dx.doi.org/" + doi);
 
 	var header = document.createElement("h2");
@@ -88,7 +90,7 @@ var fetchIndex = function(url) {
 		var data = JSON.parse(this.response);
 
 		data.items.forEach(function(item) {
-			renderItem(item.doi);
+			renderItem(item);
 		});
 
 		if (data._links.next) {

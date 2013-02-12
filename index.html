@@ -5,18 +5,19 @@
 <style>
 body { font-family: "Helvetica", sans-serif; }
 article { border-bottom: 5px solid #00a6fc; padding: 10px; clear: both; overflow: auto; }
-div { padding: 10px; }
+div { padding: 10px; clear: both; }
 a { text-decoration: none; color: #00a6fc; }
 </style>
 
 <div id="metrics"></div>
 
+<script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
 <script>
 var container = document.getElementById("metrics");
 
 var impactSources = [
-	"http://impactstory.org/embed/v1/impactstory.js", 
-	"https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
+	"http://impactstory.org/embed/v1/impactstory.js"
 ];
 
 var addRenderers = function() {
@@ -97,6 +98,7 @@ var fetchIndex = function(url) {
 			fetchIndex(data._links.next.href);
 		} else {
 			addRenderers();
+			_altmetric_embed_init();
 		}
 	};
 	xhr.send();

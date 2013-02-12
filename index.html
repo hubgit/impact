@@ -51,20 +51,21 @@ var renderItem = function(data) {
 
 	var item = document.createElement("div");
 
+	item.setAttribute("class", "altmetric-embed");
+	item.setAttribute("data-badge-type", "medium-donut");
+	item.setAttribute("data-badge-details", "right");
+	item.setAttribute("data-doi", doi);
+	
+	itemContainer.appendChild(item);
+
+	
+	var item = document.createElement("div");
+
 	item.setAttribute("class", "impactstory-embed");
 	item.setAttribute("data-verbose-badges", "true");
 	item.setAttribute("data-id-type", "doi");
 	item.setAttribute("data-api-key", "eaton-0w99ho");
 	item.setAttribute("data-id", doi);
-	
-	itemContainer.appendChild(item);
-
-	var item = document.createElement("div");
-
-	item.setAttribute("class", "altmetric-embed");
-	item.setAttribute("data-badge-type", "medium-donut");
-	item.setAttribute("data-badge-details", "right");
-	item.setAttribute("data-doi", doi);
 	
 	itemContainer.appendChild(item);
 

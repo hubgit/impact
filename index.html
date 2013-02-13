@@ -83,8 +83,6 @@ var fetchCitation = function(doi, container) {
 };
 
 var fetchIndex = function(url) {
-	console.log(url);
-
 	var xhr = new XMLHttpRequest;
 	xhr.open("GET", url);
 	xhr.setRequestHeader("Accept", "application/json");

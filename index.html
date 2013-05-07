@@ -1,108 +1,21 @@
 <!doctype html>
 <meta charset="utf-8">
+
+<!-- metadata -->
 <title>Impact</title>
 
-<style>
-body { font-family: "Helvetica", sans-serif; }
-article { border-bottom: 5px solid #00a6fc; padding: 10px; clear: both; overflow: auto; }
-div { padding: 10px; }
-a { text-decoration: none; color: #00a6fc; }
-article > .altmetric-embed, article > .impactstory-embed { display: inline-block; vertical-align: top; }
-</style>
+<!-- styles -->
+<link rel="stylesheet" href="style.css">
 
-<div id="metrics"></div>
+<!-- elements -->
+<div class="column" id="article-metrics">
+	<h2>Articles</h2>
+</div>
 
-<script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+<div class="column" id="preprint-metrics">
+	<h2>PrePrints</h2>
+</div>
 
-<script>
-var container = document.getElementById("metrics");
-
-var impactSources = [
-	"http://impactstory.org/embed/v1/impactstory.js"
-];
-
-var addRenderers = function() {
-	var head = document.getElementsByTagName("head")[0];
-
-	impactSources.forEach(function(url) {
-		var script = document.createElement("script");
-		script.setAttribute("type", "application/javascript");
-		script.setAttribute("src", url);
-
-		head.appendChild(script);
-	});
-};
-
-var renderItem = function(data) {
-	var doi = data.doi;
-
-	var itemContainer = document.createElement("article");
-
-	var a = document.createElement("a");
-	a.textContent = data.title;
-	a.setAttribute("href", "http://dx.doi.org/" + doi);
-
-	var header = document.createElement("h2");
-	header.appendChild(a);
-	itemContainer.appendChild(header);
-
-	var bib = document.createElement("div");
-	itemContainer.appendChild(bib);
-	fetchCitation(doi, bib);
-
-	var item = document.createElement("div");
-
-	item.setAttribute("class", "altmetric-embed");
-	item.setAttribute("data-badge-type", "medium-donut");
-	item.setAttribute("data-badge-details", "right");
-	item.setAttribute("data-doi", doi);
-	
-	itemContainer.appendChild(item);
-
-	
-	var item = document.createElement("div");
-
-	item.setAttribute("class", "impactstory-embed");
-	item.setAttribute("data-verbose-badges", "true");
-	item.setAttribute("data-id-type", "doi");
-	item.setAttribute("data-api-key", "eaton-0w99ho");
-	item.setAttribute("data-id", doi);
-	
-	itemContainer.appendChild(item);
-
-	container.appendChild(itemContainer);
-};
-
-var fetchCitation = function(doi, container) {
-	var xhr = new XMLHttpRequest;
-	xhr.open("GET", "http://data.crossref.org/" + doi);
-	xhr.setRequestHeader("Accept", "text/bibliography; style=apa; locale=en-US");
-	xhr.onload = function() {
-		container.textContent = this.response;
-	};
-	xhr.send();
-};
-
-var fetchIndex = function(url) {
-	var xhr = new XMLHttpRequest;
-	xhr.open("GET", url);
-	xhr.setRequestHeader("Accept", "application/json");
-	xhr.onload = function() {
-		var data = JSON.parse(this.response);
-
-		data.items.forEach(function(item) {
-			renderItem(item);
-		});
-
-		if (data._links.next) {
-			fetchIndex(data._links.next.href);
-		} else {
-			addRenderers();
-			_altmetric_embed_init();
-		}
-	};
-	xhr.send();
-};
-
-fetchIndex("https://peerj.com/articles/index.json");
-</script>
+<!-- scripts -->
+<script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><!-- altmetric -->
+<script src="app.js"></script>

@@ -1,0 +1,40 @@
+html,
+body {
+	font-family: "Helvetica", sans-serif;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+article {
+	border-bottom: 5px solid #00a6fc;
+	padding: 10px;
+	margin: 10px;
+	clear: both;
+	overflow: auto;
+}
+
+a {
+	text-decoration: none;
+	color: #00a6fc;
+}
+
+.column > h2 {
+	color: #0086cc;
+	margin: 10px 20px 0;
+}
+
+article > .altmetric-embed,
+article > .impactstory-embed {
+	display: inline-block;
+	vertical-align: top;
+}
+
+article div {
+	padding: 10px;
+}
+
+.column {
+	width: 50%;
+	float: left;
+}

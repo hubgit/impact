@@ -76,7 +76,7 @@ var fetchIndex = function(url, containerID) {
 		var data = JSON.parse(this.response);
 
 		data._embedded.forEach(function(item) {
-			//renderItem(item, container);
+			renderItem(item, container);
 		});
 
 		if (data._links.next) {

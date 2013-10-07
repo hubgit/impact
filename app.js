@@ -54,10 +54,24 @@ var renderItem = function(data, container) {
 	container.appendChild(itemContainer);
 };
 
+// could use http://www.crossref.org/crweblog/2013/05/find_the_registration_agency_f.html
+var resolvers = {
+	'10.7717': 'http://data.crossref.org/',
+	'10.7287': 'http://data.datacite.org/'
+};
+
 var fetchCitation = function(doi, container) {
+	// need to determine the resolver manually, as browsers aren't passing Accept header through a redirect from dx.doi.org
+	var parts = doi.split(/\//);
+	var resolver = resolvers[parts[0]];
+
+	if (!resolver) {
+		return;
+	}
+
 	var xhr = new XMLHttpRequest;
-	xhr.open("GET", "http://data.crossref.org/" + doi);
-	xhr.setRequestHeader("Accept", "text/bibliography; style=apa; locale=en-US");
+	xhr.open("GET", resolver + encodeURIComponent(doi));
+	xhr.setRequestHeader("Accept", "text/x-bibliography; style=apa; locale=en-US");
 	xhr.onload = function() {
 		container.textContent = this.response;
 	};

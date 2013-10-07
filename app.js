@@ -75,7 +75,7 @@ var fetchIndex = function(url, containerID) {
 	xhr.onload = function() {
 		var data = JSON.parse(this.response);
 
-		data._embedded.forEach(function(item) {
+		data._items.forEach(function(item) {
 			renderItem(item, container);
 		});
 

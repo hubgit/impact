@@ -81,6 +81,8 @@ var fetchCitation = function(doi, container) {
 var finished = 0;
 
 var fetchIndex = function(url, containerID) {
+	var pages = 0;
+	
 	var container = document.getElementById(containerID);
 
 	var xhr = new XMLHttpRequest;
@@ -93,11 +95,14 @@ var fetchIndex = function(url, containerID) {
 			renderItem(item, container);
 		});
 		
-		if (++finished === 2) {
-			//addRenderers();
-			_altmetric_embed_init();
+		if (++pages === 2) {
+			if (++finished === 2) {
+				//addRenderers();
+				_altmetric_embed_init();
+			}
 			return;
 		}
+		
 
 		if (data._links.next) {
 			fetchIndex(data._links.next.href, containerID);

@@ -92,13 +92,16 @@ var fetchIndex = function(url, containerID) {
 		data._items.forEach(function(item) {
 			renderItem(item, container);
 		});
+		
+		if (++finished === 2) {
+			//addRenderers();
+			_altmetric_embed_init();
+			return;
+		}
 
 		if (data._links.next) {
 			fetchIndex(data._links.next.href, containerID);
-		} else if (++finished === 2) {
-			addRenderers();
-			_altmetric_embed_init();
-		}
+		} 
 	};
 	xhr.send();
 };
